@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+	android:orientation="vertical" >
+	
+	<TextView
+       android:id="@+id/welcome"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/welcome_txt" />
+		
+    <Button
+       android:id="@+id/send_btn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/send_btn_txt" />
+		
+    <TextView
+        android:id="@+id/sendmsg_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sendmsg_response" />
+    
+    <Button
+       android:id="@+id/getlatest_btn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/getlatest_btn_txt" />
+        
+    <TextView
+        android:id="@+id/getlatest_response_mid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/getlatest_response_mid" />
+
+    <TextView
+        android:id="@+id/getlatest_response_mdata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/getlatest_response_mdata" />
+</LinearLayout>
