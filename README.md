@@ -1,4 +1,4 @@
-# An IoT device sends flame sensor data to ARTIK Cloud for viewing
+# An Android application sends data to and receives data from ARTIK Cloud
 
 Let's build an Android application that communicates to ARTIK Cloud using ARTIK Cloud's Java/Android SDK. This tutorial is meant to help you understand how to use the SDK to perform basic operations in ARTIK Cloud.
 
