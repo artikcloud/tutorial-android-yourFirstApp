@@ -13,9 +13,9 @@ import android.widget.Button;
 public class MainActivity extends Activity {
     static final String TAG = "MainActivity";
 
-    private static final String ARTIK_CLOUD_AUTH_BASE_URL = "https://accounts.samsungsami.io";
+    private static final String ARTIK_CLOUD_AUTH_BASE_URL = "https://accounts.artik.cloud";
     private static final String CLIENT_ID = "142033bb523e476ca1f832d6c1ffd7eb";// AKA application id   //YWU
-    private static final String REDIRECT_URL = "http://localhost:8000/samidemo/index.php";
+    private static final String REDIRECT_URL = "http://localhost:8000/acdemo/index.php";
 
     private View mLoginView;
     private WebView mWebView;
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String uri) {
                 if ( uri.startsWith(REDIRECT_URL) ) {
-                    // Redirect URL has format http://localhost:8000/samidemo/index.php#expires_in=1209600&token_type=bearer&access_token=xxxx
+                    // Redirect URL has format http://localhost:8000/acdemo/index.php#expires_in=1209600&token_type=bearer&access_token=xxxx
                     // Extract OAuth2 access_token in URL
                     String[] sArray = uri.split("&");
                     for (String paramVal : sArray) {
@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
     }
     
     public String getAuthorizationRequestUri() {
-        //https://accounts.artik.cloud/authorize?client=mobile&client_id=xxxx&response_type=token&redirect_uri=http://localhost:81/samidemo/index.php
+        //https://accounts.artik.cloud/authorize?client=mobile&client_id=xxxx&response_type=token&redirect_uri=http://localhost:8000/acdemo/index.php
         return ARTIK_CLOUD_AUTH_BASE_URL + "/authorize?client=mobile&response_type=token&" +
                      "client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URL;
     }

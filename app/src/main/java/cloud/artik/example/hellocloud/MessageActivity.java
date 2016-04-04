@@ -23,7 +23,7 @@ public class MessageActivity extends Activity {
 
     public static final String KEY_ACCESS_TOKEN = "Access_Token";
 
-    private static final String ARTIK_CLOUD_API_BASE_PATH = "https://api.samsungsami.io/v1.1";
+    private static final String ARTIK_CLOUD_API_BASE_PATH = "https://api.artik.cloud/v1.1";
     private static final String DEVICE_ID = "ccab822206564630b95542dfb5684210";//YWU
 
     private ApiClient mApiClient = null;
@@ -87,18 +87,6 @@ public class MessageActivity extends Activity {
     }
 
     private void setupArtikCloudApi() {
-        // Invoke the appropriate API
-
-        //YWU to remove
-//        mUsersApi = new UsersApi();
-//        mUsersApi.setBasePath(ARTIK_CLOUD_API_BASE_PATH);
-//        mUsersApi.addHeader("Authorization", "bearer " + mAccessToken);
-//
-//        mMessagesApi = new MessagesApi();
-//        mMessagesApi.setBasePath(ARTIK_CLOUD_API_BASE_PATH);
-//        mMessagesApi.addHeader("Authorization", "bearer " + mAccessToken);
-
-        //YWU new code
         mApiClient = new ApiClient();
         mApiClient.setBasePath(ARTIK_CLOUD_API_BASE_PATH);
         mApiClient.setAccessToken(mAccessToken);
@@ -173,11 +161,9 @@ public class MessageActivity extends Activity {
                 data.put("description", "Run");
                 data.put("activity", 2);
 
-                //YWU Message msg = new Message();
                 MessageAction msg = new MessageAction();
                 msg.setSdid(DEVICE_ID);
                 msg.setData(data);
-                //YWU retVal= apis[0].postMessage(msg);
                 retVal= apis[0].sendMessageAction(msg);
             } catch (Exception e) {
                 Log.v(TAG, "::doInBackground run into Exception");
