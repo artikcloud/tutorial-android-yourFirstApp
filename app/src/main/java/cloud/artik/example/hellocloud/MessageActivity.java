@@ -24,7 +24,7 @@ public class MessageActivity extends Activity {
     public static final String KEY_ACCESS_TOKEN = "Access_Token";
 
     private static final String ARTIK_CLOUD_API_BASE_PATH = "https://api.artik.cloud/v1.1";
-    private static final String DEVICE_ID = "ccab822206564630b95542dfb5684210";//YWU
+    private static final String DEVICE_ID = "xxxx";
 
     private ApiClient mApiClient = null;
     private UsersApi mUsersApi = null;

@@ -14,7 +14,7 @@ public class MainActivity extends Activity {
     static final String TAG = "MainActivity";
 
     private static final String ARTIK_CLOUD_AUTH_BASE_URL = "https://accounts.artik.cloud";
-    private static final String CLIENT_ID = "142033bb523e476ca1f832d6c1ffd7eb";// AKA application id   //YWU
+    private static final String CLIENT_ID = "xxxx";// AKA application id
     private static final String REDIRECT_URL = "http://localhost:8000/acdemo/index.php";
 
     private View mLoginView;
