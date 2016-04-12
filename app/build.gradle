@@ -10,7 +10,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "io.samsungsami.example.hellocloud"
+        applicationId "cloud.artik.example.hellocloud"
         minSdkVersion 12
         targetSdkVersion 22
     }

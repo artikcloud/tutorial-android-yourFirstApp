@@ -22,8 +22,6 @@ public class MessageActivity extends Activity {
     private static final String TAG = "MessageActivity";
 
     public static final String KEY_ACCESS_TOKEN = "Access_Token";
-
-    private static final String ARTIK_CLOUD_API_BASE_PATH = "https://api.artik.cloud/v1.1";
     private static final String DEVICE_ID = "xxxx";
 
     private ApiClient mApiClient = null;
@@ -88,7 +86,7 @@ public class MessageActivity extends Activity {
 
     private void setupArtikCloudApi() {
         mApiClient = new ApiClient();
-        mApiClient.setBasePath(ARTIK_CLOUD_API_BASE_PATH);
+        //You can override the API endpoint if needed by mApiClient.setBasePath("https://api.artik.cloud/v1.1");
         mApiClient.setAccessToken(mAccessToken);
         mApiClient.setDebugging(true);
 
