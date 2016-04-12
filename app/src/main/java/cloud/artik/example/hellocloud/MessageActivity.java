@@ -176,7 +176,7 @@ public class MessageActivity extends Activity {
         @Override
         protected void onPostExecute(MessageIDEnvelope result) {
             if (result == null) {
-               Log.v(TAG, "::onPostExecute latestMessage is null!");
+               Log.v(TAG, "::onPostExecute result is null!");
                return;
             }
            Log.v(TAG, "::onPostExecute response to sending message = " + result.getData().toString());
