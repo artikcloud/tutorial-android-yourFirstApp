@@ -25,8 +25,8 @@ import cloud.artik.model.UserEnvelope;
 public class MessageActivity extends Activity {
     private static final String TAG = "MessageActivity";
 
+    private static final String DEVICE_ID = "<YOUR DEVICE ID>";
     public static final String KEY_ACCESS_TOKEN = "Access_Token";
-    private static final String DEVICE_ID = "xxxx";
 
     private UsersApi mUsersApi = null;
     private MessagesApi mMessagesApi = null;

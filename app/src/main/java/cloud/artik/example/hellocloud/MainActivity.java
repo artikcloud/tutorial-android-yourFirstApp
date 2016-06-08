@@ -13,7 +13,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
     static final String TAG = "MainActivity";
     private static final String ARTIK_CLOUD_AUTH_BASE_URL = "https://accounts.artik.cloud";
-    private static final String CLIENT_ID = "xxxx";// AKA application id
+    private static final String CLIENT_ID = "<YOUR CLIENT ID>";// AKA application id
     private static final String REDIRECT_URL = "http://localhost:8000/acdemo/index.php";
 
     private View mLoginView;
