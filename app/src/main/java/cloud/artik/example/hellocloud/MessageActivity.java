@@ -133,7 +133,13 @@ public class MessageActivity extends Activity {
                         @Override
                         public void onSuccess(NormalizedMessagesEnvelope result, int i, Map<String, List<String>> stringListMap) {
                             Log.v(tag, " onSuccess latestMessage = " + result.getData().toString());
-                            updateGetResponseOnUIThread(result.getData().get(0).getMid(), result.getData().get(0).getData().toString());
+                            String mid = "";
+                            String data = "";
+                            if (!result.getData().isEmpty()) {
+                                mid = result.getData().get(0).getMid();
+                                data = result.getData().get(0).getData().toString();
+                            }
+                            updateGetResponseOnUIThread(mid, data);
                         }
 
                         @Override
