@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -55,18 +56,23 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String uri) {
                 if ( uri.startsWith(REDIRECT_URL) ) {
-                    // Redirect URL has format http://localhost:8000/acdemo/index.php#expires_in=1209600&token_type=bearer&access_token=xxxx
-                    // Extract OAuth2 access_token in URL
-                    String[] sArray = uri.split("&");
-                    for (String paramVal : sArray) {
-                        if (paramVal.indexOf("access_token=") != -1) {
-                            String[] paramValArray = paramVal.split("access_token=");
-                            String accessToken = paramValArray[1];
-                            startMessageActivity(accessToken);
-                            break;
-                        }
+                    // Login succeed or back to login after signup
+
+                    if (uri.contains("access_token=")) { //login succeed
+                        // Redirect URL has format http://localhost:8000/acdemo/index.php#expires_in=1209600&token_type=bearer&access_token=xxxx
+                        // Extract OAuth2 access_token in URL
+                        String[] sArray = uri.split("access_token=");
+                        String strHavingAccessToken = sArray[1];
+                        String accessToken = strHavingAccessToken.split("&")[0];
+                        startMessageActivity(accessToken);
+                        return true;
+                    } else { // No access token available. Signup finishes and user clicks "Back to login"
+                        // Example of uri: http://localhost:8000/acdemo/index.php?origin=signup&status=login_request
+                        //
+                        eraseAuthThenLogin();
+                        return true;
                     }
-                    return true;
+
                 }
                 // Load the web page from URL (login and grant access)
                 return super.shouldOverrideUrlLoading(view, uri);
@@ -88,5 +94,10 @@ public class MainActivity extends Activity {
         Intent msgActivityIntent = new Intent(this, MessageActivity.class);
         msgActivityIntent.putExtra(MessageActivity.KEY_ACCESS_TOKEN, accessToken);
         startActivity(msgActivityIntent);
+    }
+
+    private void eraseAuthThenLogin() {
+        CookieManager.getInstance().removeAllCookie();
+        mWebView.loadUrl(getAuthorizationRequestUri());
     }
 }
