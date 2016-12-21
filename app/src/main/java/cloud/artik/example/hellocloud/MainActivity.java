@@ -65,14 +65,12 @@ public class MainActivity extends Activity {
                         String strHavingAccessToken = sArray[1];
                         String accessToken = strHavingAccessToken.split("&")[0];
                         startMessageActivity(accessToken);
-                        return true;
                     } else { // No access token available. Signup finishes and user clicks "Back to login"
                         // Example of uri: http://localhost:8000/acdemo/index.php?origin=signup&status=login_request
                         //
                         eraseAuthThenLogin();
-                        return true;
                     }
-
+                    return true;
                 }
                 // Load the web page from URL (login and grant access)
                 return super.shouldOverrideUrlLoading(view, uri);
