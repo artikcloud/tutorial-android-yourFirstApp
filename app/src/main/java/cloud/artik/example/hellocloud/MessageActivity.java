@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,7 @@ import cloud.artik.api.UsersApi;
 import cloud.artik.client.ApiCallback;
 import cloud.artik.client.ApiClient;
 import cloud.artik.client.ApiException;
-import cloud.artik.model.MessageAction;
+import cloud.artik.model.Message;
 import cloud.artik.model.MessageIDEnvelope;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.UserEnvelope;
@@ -84,7 +83,6 @@ public class MessageActivity extends Activity {
     private void setupArtikCloudApi() {
         ApiClient mApiClient = new ApiClient();
         mApiClient.setAccessToken(mAccessToken);
-        mApiClient.setDebugging(true);
 
         mUsersApi = new UsersApi(mApiClient);
         mMessagesApi = new MessagesApi(mApiClient);
@@ -159,18 +157,15 @@ public class MessageActivity extends Activity {
     private void postMsg() {
         final String tag = TAG + " sendMessageActionAsync";
 
-        HashMap<String, Object> data = new HashMap<String, Object>();
-        data.put("stepCount", 4393);
-        data.put("heartRate", 110);
-        data.put("description", "Run");
-        data.put("activity", 2);
-
-        MessageAction msg = new MessageAction();
+        Message msg = new Message();
         msg.setSdid(DEVICE_ID);
-        msg.setData(data);
+        msg.getData().put("stepCount", 4393);
+        msg.getData().put("heartRate", 110);
+        msg.getData().put("description", "Run");
+        msg.getData().put("activity", 2);
 
         try {
-            mMessagesApi.sendMessageActionAsync(msg, new ApiCallback<MessageIDEnvelope>() {
+            mMessagesApi.sendMessageAsync(msg, new ApiCallback<MessageIDEnvelope>() {
                 @Override
                 public void onFailure(ApiException exc, int i, Map<String, List<String>> stringListMap) {
                     processFailure(tag, exc);
