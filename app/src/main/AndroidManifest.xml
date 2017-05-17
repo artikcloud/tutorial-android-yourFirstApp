@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cloud.artik.example.hellocloud"
-    android:versionCode="1"
-    android:versionName="1.0" >
+ >
 
     <uses-permission android:name="android.permission.INTERNET" />
-	
-	<uses-sdk
-        android:minSdkVersion="12"
-        android:targetSdkVersion="21" />
 
     <application
         android:allowBackup="true"
@@ -16,15 +11,32 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="cloud.artik.example.hellocloud.MainActivity"
+            android:name="cloud.artik.example.hellocloud.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="cloud.artik.example.hellocloud.ARTIKCLOUD_AUTHORIZATION_RESPONSE"/>
             </intent-filter>
         </activity>
-        
+
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <!--
+                 Make sure these two intent filter fields respects "AUTH REDIRECT URL"
+                 of your application set up at the developer.artik.cloud.
+                 For example, if REDIRECT URL is "cloud.artik.example.oauth://oauth2callback",
+                 the intent-filter fields looks like the following
+                -->
+                <data android:scheme="cloud.artik.example.hellocloud" android:host="oauth2callback"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="cloud.artik.example.hellocloud.MessageActivity"
             android:label="@string/play_with_messages" >

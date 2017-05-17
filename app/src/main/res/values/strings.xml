@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--  Main activity -->
+    <!--  Login activity -->
     <string name="app_name">HelloArtikCloud</string>
     <string name="hello_world">Please login to ARTIK Cloud</string>
     <string name="click">login</string>
     
-    <!-- message activity -->
+    <!-- Message activity -->
     <string name="play_with_messages">Play with ARTIK Cloud</string>
     <string name="welcome_txt">Welcome </string>
     <string name="send_btn_txt">send a message</string>

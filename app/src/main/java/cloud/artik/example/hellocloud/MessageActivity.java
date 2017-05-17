@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package cloud.artik.example.hellocloud;
 
 import android.app.Activity;
@@ -21,11 +37,10 @@ import cloud.artik.model.MessageIDEnvelope;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.UserEnvelope;
 
+import static cloud.artik.example.hellocloud.Config.DEVICE_ID;
+
 public class MessageActivity extends Activity {
     private static final String TAG = "MessageActivity";
-
-    private static final String DEVICE_ID = "<YOUR DEVICE ID>";
-    public static final String KEY_ACCESS_TOKEN = "Access_Token";
 
     private UsersApi mUsersApi = null;
     private MessagesApi mMessagesApi = null;
@@ -41,7 +56,8 @@ public class MessageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         
-        mAccessToken = getIntent().getStringExtra(KEY_ACCESS_TOKEN);
+        AuthStateDAL authStateDAL = new AuthStateDAL(this);
+        mAccessToken = authStateDAL.readAuthState().getAccessToken();
         Log.v(TAG, "::onCreate get access token = " + mAccessToken);
 
         Button sendMsgBtn = (Button)findViewById(R.id.send_btn);
@@ -158,7 +174,7 @@ public class MessageActivity extends Activity {
         final String tag = TAG + " sendMessageActionAsync";
 
         Message msg = new Message();
-        msg.setSdid(DEVICE_ID);
+        msg.setSdid(Config.DEVICE_ID);
         msg.getData().put("stepCount", 4393);
         msg.getData().put("heartRate", 110);
         msg.getData().put("description", "Run");
